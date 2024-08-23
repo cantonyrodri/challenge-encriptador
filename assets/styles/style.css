@@ -1,4 +1,4 @@
-
+/* Roots */
 :root{
     /* Original colors*/
     --color-dark-blue-100:#609ed4;
@@ -25,6 +25,7 @@
     /* Boxes */
     --color-backround:var(--color-light-blue-100);
     --color-box: var(--color-white);
+    --color-footer:var(--color-dark-blue-200);
 
     /* Texts */
     --color-text-inp: var(--color-dark-blue-300);
@@ -38,7 +39,7 @@
     --color-text-btn-copy:var(--color-dark-blue-300);
 
     /* Buttons */
-    --color-outline-btn:var(--color-dark-blue-300);
+    --color-border-btn:var(--color-dark-blue-300);
     
     --color-btn-enc:var(--color-dark-blue-300);
     --color-btn-dec1:var(--color-btn-disabled);
@@ -47,10 +48,156 @@
     --color-btn-copy:var(--color-white);
 
     /* Original font */
-    --font-inter:'Montserrat', sans-serif;
+    --font-inter:'Inter', sans-serif;
+
+    /* Width and height */
+    --height-header:80px;
+    --height-footer:54px
 }
 
-*{
-    padding: 0;
-    margin: 0;
+/* General */
+*{  
+    font-family: var(--font-inter);
+    font-size: 16px;
+}
+/* Body */
+body{
+    background: var(--color-backround);
+}
+/* Header */
+header{
+    width: 100%;
+}
+
+.header{
+    display: flex;
+    height: var(--height-header);
+    align-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.header__div{
+    display: flex;
+    height: auto;
+    width: 88%;
+    margin: auto;
+    align-items: center;
+}
+
+.header__div__logo{
+    min-height: 40px;
+    max-height: 50px;
+    height: 100%;
+}
+
+/* Main */
+main{
+    background-color: red;
+    width: 90%;
+    margin: auto 40px auto auto;
+    align-items: end;
+
+}
+
+.main{
+    display: flex;
+    background-color: orange;
+    margin-left: 16.7%;
+    margin-right: 2.8%;
+}
+/* Main-Section1 */
+.main__left{
+    background-color: yellowgreen;
+    width: 70%;
+}
+
+.main__left__text{
+    border: none;
+    color: var(--color-text-inp);
+    font-size: 2rem;
+    text-transform: lowercase;
+}
+
+::placeholder{ color: var(--color-text-inp);}
+    .main__left__text:focus{
+        outline: none;
+    }
+
+.main__left__instructions{
+    display: flex;
+    align-items: center;
+}
+
+.instructions__message{
+    color:var(--color-text-alert);
+    font-size: 0.75rem;
+}
+
+.buttons__encryptor{
+    background-color: var(--color-btn-enc);
+    border: 1px solid var(--color-border-btn);
+    border-radius: 24px;
+    color: var(--color-text-btn-enc);
+    font-size: 1rem;
+    cursor: pointer;
+    height: 67px;
+    width: 328px;
+}
+
+.buttons__decryptor{
+    background-color: var(--color-btn-dec1);
+    border: 1px solid var(--color-border-btn);
+    border-radius: 24px;
+    color: var(--color-text-btn-dec);
+    font-size: 1rem;
+    cursor: pointer;
+    height: 67px;
+    width: 328px;
+    margin-left: 24px;
+
+}
+
+/* Main-Section2 */
+.main__right{
+    background-color: yellow;
+    width: 30%;
+}
+
+.main__right__text{
+    background: var(--color-white);
+    background-image: url("./assets/svg/muneco-lupa.svg");
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 24px;
+    color: var(--color-text-out2);
+}
+
+.main__right__text:focus{
+    outline: none;
+}
+
+.buttons__copy{
+    background-color: --c;
+    border: 1px solid var(--color-border-btn);
+    border-radius: 24px;
+    color: var(--color-text-btn-dec);
+    font-size: 1rem;
+    cursor: pointer;
+    height: 67px;
+    width: 328px;
+    margin-left: 24px;
+}
+
+/* Footer */
+footer{
+    background-color:var(--color-footer);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    min-height: var(--height-footer);
+    width: 100%;
+    color: var(--color-white);
+    font-size: 1rem;
+    font-family: var(--font-inter);
 }
