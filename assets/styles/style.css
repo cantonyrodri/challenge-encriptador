@@ -43,16 +43,16 @@
     
     --color-btn-enc:var(--color-dark-blue-300);
     --color-btn-dec1:var(--color-btn-disabled);
-    --color-btn-dec2:var(--color-text-btn-enc);
+    --color-btn-dec2:var(--color-light-blue-100);
 
-    --color-btn-copy:var(--color-white);
+    --color-btn-copy:var(--color-light-blue-100);
 
     /* Original font */
     --font-inter:'Inter', sans-serif;
 
     /* Width and height */
     --height-header:80px;
-    --height-footer:54px
+    --height-footer:54px;
 }
 
 /* General */
@@ -64,6 +64,7 @@
 body{
     background: var(--color-backround);
 }
+
 /* Header */
 header{
     width: 100%;
@@ -71,51 +72,61 @@ header{
 
 .header{
     display: flex;
-    height: var(--height-header);
     align-content: flex-end;
     flex-wrap: wrap;
+    height: var(--height-header);
 }
 
 .header__div{
     display: flex;
+    align-items: center;
+    margin: auto;
     height: auto;
     width: 88%;
-    margin: auto;
-    align-items: center;
+    
 }
 
 .header__div__logo{
+    height: 100%;
     min-height: 40px;
     max-height: 50px;
-    height: 100%;
 }
 
 /* Main */
 main{
     background-color: red;
-    width: 90%;
-    margin: auto 40px auto auto;
-    align-items: end;
-
 }
 
 .main{
-    display: flex;
     background-color: orange;
-    margin-left: 16.7%;
-    margin-right: 2.8%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: end;
+    margin: auto 40px auto auto;
+    padding: 0.5rem;
+    gap: 1rem;
+    min-height: calc(100vh - var(--height-header) - var(--height-footer));
+    width: 88%;
 }
 /* Main-Section1 */
 .main__left{
     background-color: yellowgreen;
-    width: 70%;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 100%;
 }
 
 .main__left__text{
+    background: transparent;
     border: none;
+    text-transform: lowercase;
+    padding: 0px;
+    min-height: 60px;
+    max-height: 390px;
+    width: 100%;
     color: var(--color-text-inp);
     font-size: 2rem;
-    text-transform: lowercase;
 }
 
 ::placeholder{ color: var(--color-text-inp);}
@@ -126,6 +137,10 @@ main{
 .main__left__instructions{
     display: flex;
     align-items: center;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    margin-top: auto;
+    text-align: center;
 }
 
 .instructions__message{
@@ -133,59 +148,83 @@ main{
     font-size: 0.75rem;
 }
 
-.buttons__encryptor{
-    background-color: var(--color-btn-enc);
+.main__left__buttons{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    gap: 0.5rem; 
+}
+
+.buttons__encryptor,
+.buttons__decryptor,
+.buttons__copy{
     border: 1px solid var(--color-border-btn);
     border-radius: 24px;
-    color: var(--color-text-btn-enc);
-    font-size: 1rem;
     cursor: pointer;
     height: 67px;
-    width: 328px;
+    width: 47%;
+    min-width: 140px;
+    max-width: 328px;
+    font-size: 1rem;
+}
+
+.buttons__encryptor{
+    background-color: var(--color-btn-enc);
+    color: var(--color-text-btn-enc);
 }
 
 .buttons__decryptor{
     background-color: var(--color-btn-dec1);
-    border: 1px solid var(--color-border-btn);
-    border-radius: 24px;
     color: var(--color-text-btn-dec);
-    font-size: 1rem;
-    cursor: pointer;
-    height: 67px;
-    width: 328px;
-    margin-left: 24px;
-
 }
 
 /* Main-Section2 */
 .main__right{
-    background-color: yellow;
-    width: 30%;
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0px 1rem 2rem -0.5rem var(--color-gray-400);
+    border-radius: 32px;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    height: calc(100% + 20px);
+    width: 100%;
+}
+
+.main__right__muneco{
+    width: 40%;
+    min-width: 250px;
+	
 }
 
 .main__right__text{
-    background: var(--color-white);
-    background-image: url("./assets/svg/muneco-lupa.svg");
-    background-repeat: no-repeat;
     border: none;
-    border-radius: 24px;
-    color: var(--color-text-out2);
+    outline: none;
+    
+    pointer-events: none;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    /* color: var(--color-text-out1); */
+    color: red;
+    font-size: 1.5rem;
 }
 
 .main__right__text:focus{
     outline: none;
 }
 
+
+
 .buttons__copy{
-    background-color: --c;
-    border: 1px solid var(--color-border-btn);
-    border-radius: 24px;
+    background: none;
+    background-color: var(--color-btn-copy);
     color: var(--color-text-btn-dec);
-    font-size: 1rem;
-    cursor: pointer;
-    height: 67px;
-    width: 328px;
-    margin-left: 24px;
+    min-width: 80px;
+    width: 100%;
 }
 
 /* Footer */
@@ -201,3 +240,7 @@ footer{
     font-size: 1rem;
     font-family: var(--font-inter);
 }
+
+
+
+/* @media */
