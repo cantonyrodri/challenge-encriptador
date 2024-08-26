@@ -26,7 +26,7 @@
             <section class="main__left">
                 <textarea id="text-input" class="main__left__text" placeholder="Ingrese el texto aqui" autofocus style="height: 350px;"></textarea>
                 <div class="main_left__textAndBtn">
-                    <div class="main__left__instructions">
+                    <div id="container-instructionMessage" class="main__left__instructions">
                         <img src="./assets/svg/icono-alert.svg" alt="Icono de alerta">
                         <h4 id="instruction-message" class="instructions__message">Solo letras minúsculas y sin acentos</h4>
                     </div>
@@ -41,9 +41,9 @@
             <section id="main-right" class="main__right">
                 <img id="muneco" class="main__right__muneco" src="./assets/svg/muneco-lupa.svg" alt="Ningun mensaje fue encontrado. Ingresa el texto que desees encriptar o desencriptar">
                 <textarea id="text-output" class="main__right__text" placeholder="Ningún mensaje fue encontrado"></textarea>
-                <p class="main__right__instruction2">Ingresa el texto que desees encriptar o desencriptar</p>
+                <p id="instruction-output" class="main__right__instruction2">Ingresa el texto que desees encriptar o desencriptar</p>
                 <div class="main__right_buttons">
-                    <button class="buttons__copy hide__element">Copiar</button>
+                    <button id="btn-copy" class="buttons__copy hide__element">Copiar</button>
                 </div>
             </section>
         </div>

@@ -128,7 +128,7 @@ main{
 .main__left__text{
     background: transparent;
     border: none;
-    text-transform: lowercase;
+    /* text-transform: lowercase; */
     resize: none;
     min-height: 70px;
     max-height: 370px;
@@ -168,9 +168,19 @@ main{
     text-align: center;
 }
 
+.main__left__instructionsAlteration{
+    background: var(--color-white);
+    border-radius: 15px;
+}
+
 .instructions__message{
     color:var(--color-text-alert);
     font-size: 0.75rem;
+}
+
+.instructions__messageAlteration{
+    color:var(--color-dark-blue-500);
+    font-weight: 700;
 }
 
 .main__left__buttons{
