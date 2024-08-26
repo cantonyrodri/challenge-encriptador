@@ -24,26 +24,26 @@
         <div class="main">
             <!-- Section1-->
             <section class="main__left">
-                <textarea class="main__left__text" placeholder="Ingrese el texto aqui" autofocus style="height: 350px;"></textarea>
+                <textarea id="text-input" class="main__left__text" placeholder="Ingrese el texto aqui" autofocus style="height: 350px;"></textarea>
                 <div class="main_left__textAndBtn">
                     <div class="main__left__instructions">
                         <img src="./assets/svg/icono-alert.svg" alt="Icono de alerta">
-                        <h4 class="instructions__message">Solo letras minúsculas y sin acentos</h4>
+                        <h4 id="instruction-message" class="instructions__message">Solo letras minúsculas y sin acentos</h4>
                     </div>
                     <div class="main__left__buttons">
-                        <button class="buttons__encryptor">Encriptador</button>
-                        <button class="buttons__decryptor">Desencriptador</button>
+                        <button id="btn-encryptor" class="buttons__encryptor">Encriptador</button>
+                        <button id="btn-decryptor" class="buttons__decryptor" disabled >Desencriptador</button>
                     </div>
                 </div>
             </section>
 
             <!-- Section2-->
-            <section class="main__right">
-                <img  class="main__right__muneco" src="./assets/svg/muneco-lupa.svg" alt="Ningun mensaje fue encontrado. Ingresa el texto que desees encriptar o desencriptar">
-                <textarea class="main__right__text" placeholder="Ningún mensaje fue encontrado"></textarea>
+            <section id="main-right" class="main__right">
+                <img id="muneco" class="main__right__muneco" src="./assets/svg/muneco-lupa.svg" alt="Ningun mensaje fue encontrado. Ingresa el texto que desees encriptar o desencriptar">
+                <textarea id="text-output" class="main__right__text" placeholder="Ningún mensaje fue encontrado"></textarea>
                 <p class="main__right__instruction2">Ingresa el texto que desees encriptar o desencriptar</p>
                 <div class="main__right_buttons">
-                    <button class="buttons__copy buttons__hide">Copiar</button>
+                    <button class="buttons__copy hide__element">Copiar</button>
                 </div>
             </section>
         </div>
@@ -51,6 +51,6 @@
     </main>
     <!-- Footer-->
     <footer>Desarrollado por Cristian Rodriguez</footer>
-    
+    <script src="./assets/scripts/siteFunctions.js"></script>
 </body>
 </html>

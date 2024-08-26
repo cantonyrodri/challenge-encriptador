@@ -204,6 +204,10 @@ main{
     color: var(--color-text-btn-dec);
 }
 
+.buttons__decryptorAlteration{
+    background-color: var(--color-btn-dec2);
+}
+
 /* Main-Section2 */
 .main__right{
     background-color: var(--color-white);
@@ -216,6 +220,10 @@ main{
     gap: 1rem;
     height: calc(100% + 20px);
     width: 100%;
+}
+
+.main__rightReplace{
+    justify-content: space-between;
 }
 
 .main__right__muneco{
@@ -235,9 +243,23 @@ main{
     text-align: center;
     color: var(--color-text-out1);
     font-size: 1.5rem;
+    font-weight: 700;
 }
 
-.main__right__text::placeholder{color: var(--color-text-out1);}
+.main__right__textAlteration{
+    pointer-events: all;
+    height: auto;
+    min-height: calc(100% - 100px);
+    text-align: left;
+    color: var(--color-text-out2);
+    font-weight: 400;
+}
+
+.main__right__text::placeholder{
+    color: var(--color-text-out1);
+    font-family: var(--font-inter);
+
+}
 
 
 .main__right__text::-webkit-scrollbar {
@@ -270,7 +292,7 @@ main{
     min-width: 70px;
 }
 
-.buttons__hide{
+.hide__element{
     display: none;
 }
 
@@ -318,7 +340,7 @@ footer{
     }
 }
 
-/* @media - Celular width < 400px */
+/* @media - Celular width < 450px */
 
 @media screen and (max-width:450px){
     .header__div{
@@ -344,7 +366,18 @@ footer{
     .buttons__encryptor,
     .buttons__decryptor,
     .buttons__copy{
-        width: 90%;
         height: 50px;
+        width: 90%;
+    }
+}
+
+/* @media - Celular width < 380px */
+
+@media screen and (max-width:380px){
+    .buttons__encryptor,
+    .buttons__decryptor,
+    .buttons__copy{
+        height: 40px;
+        width: 80%;
     }
 }
