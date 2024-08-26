@@ -1,129 +1,186 @@
-/* 
-Reglas de encriptado
+//Definir constantes
+const containerMessage = getElement('container-instructionMessage');
+const textInput = getElement('text-input');
+const message = getElement('instruction-message');
+const encryptor = getElement('btn-encryptor');
+const decryptor = getElement('btn-decryptor');
+const sectionRight = getElement('main-right');
+const munecoImg = getElement('muneco');
+const textOutput = getElement('text-output');
+const instruccionOut = getElement('instruction-output');
+const buttonCopy = getElement('btn-copy');
 
-La letra "e" es convertida para "enter"
-La letra "i" es convertida para "imes"
-La letra "a" es convertida para "ai"
-La letra "o" es convertida para "ober"
-La letra "u" es convertida para "ufat"
+let key = new Map([
+	["e", "enter"],
+	["o", "ober"],
+	["i", "imes"],
+	["a", "ai"],
+	["u", "ufat"]
+]);
 
-Son los "id" de los elementos en HTML:
+// Crear un Map para desencriptar basado en el Map de encriptar
+const keyDecrytpor = reverseMap(key);
 
-container-instructionMessage (Es del elemento tipo "div" que contiene a "instruction-message")
-text-input (Es del elemento tipo "textarea" donde se ingresa el texto)
-instruction-message (Es del elemento tipo "h4" donde se indica la instruccion)
-btn-encryptor (Es del elemento tipo "button" para encriptar)
-btn-decryptor (Es del elemento tipo "button" para desencriptar)
-main-right  (Es del elemento tipo "section")
-muneco (Es del elemento tipo "img" del muñeco que se muestra)
-text-output (Es del elemento tipo "textarea" donde se mostrara el texto encriptado)
-instruction-output (Es del elemento tipo "p" donde hay un mensaje)
-btn-copy (Es del elemento tipo "button" para copiar el texto)
+//----Funciones base
 
-Estas son los nombres de las clases adicionales en "CSS",
-para agregar a los elementos mediante su "id":
+// Función para invertir un Map
+function reverseMap(map) {
+    return new Map([...map.entries()].map(([key, value]) => [value, key]));
+}
 
-.main__left__instructionsAlteration ->Modifica color de espacio que contiene a  "instruction-message".
-.instructions__messageAlteration ->Agrega estilos a texto "instruction-message".
-.buttons__decryptorAlteration ->Cambia el color cuando se habilita
-.main__rightReplace ->justify content space between
-.main__right__textAlteration ->Cuando se va a encriptar
-.hide__element ->Clase para ocultar elemento
+// Construye una expresión regular a partir de las claves del Map
+function buildRegularExpression(map) {
+    return new RegExp([...map.keys()].join('|'), 'g');
+}
 
-Funciones:
-1.Verificiar contenido de texto
-  Si no hay texto en el elemento de id "text-input": 
-  -Modificar el texto en el HTML de "instruction-message" a
-   "No se ha encontrado texto".
-  -Añadir la clase ".main__left__instructionsAlteration" al
-   elemento de id "container-instructionMessage".
-  -Añadir la clase ".instructions__messageAlteration" al 
-   elemento de id "instruction-message" 
+// Reemplaza los textos basados en un Map de sustituciones
+function setTextByMap(map,text) {
+    const regex = buildRegularExpression(map);
+    return text.replace(regex, (match) => map.get(match));
+}
+// -------------
+// Función para definir constante para id
+function getElement(id) {
+    return document.getElementById(id);
+}
 
-2.Verificar mayusculas en texto
-  Si el texto del elemento de id "text-input", 
-  tiene mayusculas:
-  -Modificar el texto en el HTML del elemento de id "instruction-message" 
-   a "No se aceptan mayusculas".
-  -Añadir la clase ".main__left__instructionsAlteration" al
-   elemento de id "container-instructionMessage".
-  -Añadir la clase ".instructions__messageAlteration" al 
-   elemento de id "instruction-message" 
+// Función para modificar texto a través de un elemento constante
+function setTextByElement(element, text) {
+    if (element) {
+        element.innerHTML = text;
+    } else {
+        console.warn("Funcion setTextByElement:Elemento no válido.");
+    }
+}
 
-3.Verificar caracteres especiales en texto
-  Si el texto del elemento de id "text-input", 
-  tiene caracteres especiales:
-  -Modificar el texto en el HTML del elemento de id "instruction-message" 
-   a "No se aceptan carácteres especiales".
-  -Añadir la clase ".main__left__instructionsAlteration" al
-   elemento de id "container-instructionMessage".
-  -Añadir la clase ".instructions__messageAlteration" al 
-   elemento de id "instruction-message" 
+// Añadir una clase a un elemento constante
+function addClass(element, className) {
+    if (element) {
+        if (!element.classList.contains(className)) {
+            element.classList.add(className);
+        }
+    } else {
+        console.warn("Función addClass:Elemento no válido.");
+    }
+}
 
-4.Añadir cambios
-  Se realizan los cambios:
-  -Se remueve la propiedad "disabled" del elemento con id  
-   "btn-decryptor".
-  -Añadir la clase ".buttons__decryptorAlteration" al 
-   elemento de id "btn-decryptor" 
+// Remover una clase de un elemento constante
+function removeClass(element, className) {
+    if (element) {
+        if (element.classList.contains(className)) {
+            element.classList.remove(className);
+        }
+    } else {
+        console.warn("Función removeClass: Elemento no válido.");
+    }
+}
 
-  -Modificar el texto en el HTML del elemento de id "instruction-message" 
-   a "Solo letras minúsculas y sin acentos".
-  -Remover la clase ".main__left__instructionsAlteration" al
-   elemento de id "container-instructionMessage".
-  -Remover la clase ".instructions__messageAlteration" al 
-   elemento de id "instruction-message" 
+//----Funciones 
 
-  -Añadir la clase ".main__rightReplace" al 
-   elemento de id "main-right" 
-  -Añadir la clase ".main__right__textAlteration" al 
-   elemento de id "text-output" 
+//1.Verificiar contenido de texto
+//2.Verificar mayusculas en texto
+//3.Verificar caracteres especiales en texto
+function verifyTextContent() {
+    let text = textInput.value;
+    let txt = text.normalize("NFD").replace(/[^\w\sñÑ]|[\u0300-\u036f]/g, "");
 
-  -Añadir la clase ".hide__element" al 
-   elemento de id "muneco" 
-  -Añadir la clase ".hide__element" al 
-   elemento de id "instruction-output" 
+    if (text === "") {
+        setTextByElement(message,"No se ha encontrado texto");
+        addClass(containerMessage, "main__left__instructionsAlteration");
+        addClass(message, "instructions__messageAlteration");
 
-  -Remover la clase ".hide__element" al 
-   elemento de id "btn-copy" 
+    } else if (text !== text.toLowerCase()) {
+        setTextByElement(message,"No se aceptan mayúsculas");
+        addClass(containerMessage, "main__left__instructionsAlteration");
+        addClass(message, "instructions__messageAlteration");
 
+    } else if (text !== txt) {
+        setTextByElement(message,"No se aceptan carácteres especiales");
+        addClass(containerMessage, "main__left__instructionsAlteration");
+        addClass(message, "instructions__messageAlteration");
 
-5.Quitar cambios
-  Se quitan todos los cambios añadidos, excepto:
+    } else {
+        removeClass(containerMessage, "main__left__instructionsAlteration");
+        removeClass(message, "instructions__messageAlteration");
+        return true;
+    }
+}
 
-  -Modificar el texto en el HTML del elemento de id "instruction-message" 
-   a "Solo letras minúsculas y sin acentos".
+//4.Añadir cambios
+function addChanges () {
+    decryptor.disabled = false;
+    addClass(decryptor, "buttons__decryptorAlteration");
+    setTextByElement(message, "Solo letras minúsculas y sin acentos");
+    addClass(sectionRight, "main__rightReplace");
+    addClass(textOutput, "main__right__textAlteration");
+    addClass(munecoImg, "hide__element");
+    addClass(instruccionOut, "hide__element");
+    removeClass(buttonCopy, "hide__element");
 
-6.Encriptar texto
-  Se encripta el texto
+}
 
-7.Desencriptar texto
-  Se desencripta
+//5.Remover cambios
+function removeChanges () {
+    decryptor.disabled = true;
+    removeClass(decryptor, "buttons__decryptorAlteration");
+    setTextByElement(message, "Solo letras minúsculas y sin acentos");
+    removeClass(sectionRight, "main__rightReplace");
+    removeClass(textOutput, "main__right__textAlteration");
+    removeClass(munecoImg, "hide__element");
+    removeClass(instruccionOut, "hide__element");
+    addClass(buttonCopy, "hide__element");
+}
 
-8.Funcion de clic de boton de id "btn-encryptor"
-  Cuando se pulsa el boton se evaluan las funciones:
-  -Verificiar contenido de texto
-  -Verificar mayusculas en texto
-  -Verificar caracteres especiales en texto
+//6.Encriptar texto
+function textEncryptor(newtext) {
+    return setTextByMap(key,newtext);
+}
 
-  Cuando se comprueba que son verdaderas:
-  -Añadir cambios
-  -Encriptar texto
+//7.Desencriptar texto
+function textDecryptor(newtext) {
+    return setTextByMap(keyDecrytpor,newtext);
+}
 
-9.Funcion de clic de boton de id "btn-encryptor"
-  Cuando se pulsa el boton se evaluan las funciones:
-  -Verificiar contenido de texto
-  -Verificar mayusculas en texto
-  -Verificar caracteres especiales en texto
+//8.Evento de clic de boton de id "btn-encryptor"
+encryptor.addEventListener('click', () => {
+    if (verifyTextContent()) {
+        let text = textInput.value;
+        addChanges ();
+        let textE = textEncryptor(text);
+        setTextByElement (textOutput, textE);
+    }
+});
 
-  Cuando se comprueba que son verdaderas:
-  -Añadir cambios
-  -Desencriptar texto
+//9.Funcion de clic de boton de id "btn-encryptor"
+decryptor.addEventListener('click', () => {
+    if (verifyTextContent()) {
+        addChanges ();
+        let text2 = textInput.value;
+        let textD = textDecryptor(text2);
+        setTextByElement (textOutput, textD);
+        
+    }
+});
 
-10. Funcion de clic de boton de id "btn-copy"
-  Se realiza lo siguiente:
-  -Se copia el texto del elemento de id "text-output"
-  -Se muestra alerta de mensaje "Se ha copiado correctamente el texto"
-  -Quitar cambios
+//10. Funcion de clic de boton de id "btn-copy"
+buttonCopy.addEventListener('click', () => {
+    if (textOutput) {
+        textOutput.select();
 
-*/
+        try {
+            document.execCommand('copy');
+            alert('Se ha copiado correctamente el texto');
+        } catch (error) {
+            console.error('Error al copiar el texto: ', error);
+            alert('Hubo un problema al copiar el texto.');
+        }
+        
+        removeChanges();
+        setTextByElement(textInput, '');
+        setTextByElement(textOutput, '');
+        decryptor.disabled = false;
+
+    } else {
+        console.warn('Elemento de texto no encontrado.');
+    }
+});

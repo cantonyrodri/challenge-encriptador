@@ -102,11 +102,11 @@ header{
 
 /* Main */
 main{
-    background-color: red;
+    background-color: transparent;
 }
 
 .main{
-    background-color: orange;
+    background-color:transparent;
     display: grid;
     grid-template-columns: 2.5fr 1fr;
     align-items: end;
@@ -117,7 +117,7 @@ main{
 }
 /* Main-Section1 */
 .main__left{
-    background-color: yellowgreen;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -169,7 +169,7 @@ main{
 }
 
 .main__left__instructionsAlteration{
-    background: var(--color-white);
+    background: var(--color-light-blue-500);
     border-radius: 15px;
 }
 
@@ -199,7 +199,7 @@ main{
     cursor: pointer;
     height: 67px;
     width: 47%;
-    min-width: 130px;
+    min-width: 100px;
     max-width: 328px;
     font-size: 1rem;
 }
@@ -230,6 +230,7 @@ main{
     gap: 1rem;
     height: calc(100% + 20px);
     width: 100%;
+    padding-top: 1rem;
 }
 
 .main__rightReplace{
@@ -249,7 +250,7 @@ main{
     overflow: hidden;
     outline: none;
     resize: none;
-    width: 95%;
+    width: 90%;
     text-align: center;
     color: var(--color-text-out1);
     font-size: 1.5rem;
@@ -259,7 +260,7 @@ main{
 .main__right__textAlteration{
     pointer-events: all;
     height: auto;
-    min-height: calc(100% - 100px);
+    min-height: calc(100% - 90px);
     text-align: left;
     color: var(--color-text-out2);
     font-weight: 400;
@@ -295,11 +296,16 @@ main{
     font-size: 1rem;
 }
 
+.main__right_buttons{
+    padding-bottom: 0.25rem;
+    width: 70%;
+    /* align-items: center; */
+    text-align: center;
+}
 .buttons__copy{
     background-color: var(--color-btn-copy);
     color: var(--color-text-btn-copy);
     width: 100%;
-    min-width: 70px;
 }
 
 .hide__element{
@@ -334,6 +340,7 @@ footer{
 
     .main__left__text{
         max-height: 300px;
+        font-size: 1.5rem;
     }
 
     .main_left__textAndBtn{
@@ -343,6 +350,10 @@ footer{
     .main__right{
         height: 95%;
         margin: auto;
+    }
+
+    .main__right__text{
+        font-size: 1rem;
     }
 
     .main__right__muneco{
@@ -359,6 +370,7 @@ footer{
 
     .main__left__text{
         max-height: 200px;
+        font-size: 1rem;
     }
 
 
