@@ -110,7 +110,7 @@ main{
     display: grid;
     grid-template-columns: 2.5fr 1fr;
     align-items: end;
-    margin: auto 40px auto auto;
+    margin: auto 40px 10px auto;
     gap: 1rem;
     min-height: calc(100vh - var(--height-header) - var(--height-footer));
     width: 88%;
