@@ -261,6 +261,7 @@ main{
 .main__right__textAlteration{
     pointer-events: all;
     height: auto;
+    overflow: auto;
     min-height: calc(100% - 90px);
     text-align: left;
     color: var(--color-text-out2);
